@@ -1,0 +1,363 @@
+{
+	"info": {
+		"_postman_id": "cde01311-405f-4d84-864e-d833df0fd2f4",
+		"name": "E-Commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15224689"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get Products",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Get Cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cart",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Cart Item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": \"656b5d6f6811ac597b6969e4\",\n    \"quantity\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cart",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Cart Item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cart/65674b8280bcd87f34fe39f1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart",
+								"65674b8280bcd87f34fe39f1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place New Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Order",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/orders/656b72141830574ed467b52b/cancel",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								"656b72141830574ed467b52b",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Init Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"payerId\": \"payerId\",\n    \"paymentId\": \"paymentId\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/1/payment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								"1",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pay Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"payerId\": \"payerId\",\n    \"paymentId\": \"paymentId\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/1/pay",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								"1",
+								"pay"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "user1@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "e-commerce-app",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8082/realms/e-commerce/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"realms",
+						"e-commerce",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "e-commerce-app",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIwYjliMGYwZS0zZDc2LTQ2MGUtYWU2Ny00OTUwNTE3OWViZmYifQ.eyJleHAiOjE3MDE1MjQwMDYsImlhdCI6MTcwMTUyMTYwNiwianRpIjoiNjZiZWMzMmYtNzdhMS00YzI2LTliYmItODAxMzZlZWI0OWIyIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrOjgwODIvcmVhbG1zL2UtY29tbWVyY2UiLCJhdWQiOiJodHRwOi8va2V5Y2xvYWs6ODA4Mi9yZWFsbXMvZS1jb21tZXJjZSIsInN1YiI6IjA5NjI4ODljLTNjYWYtNDc3Yi04MGEwLTdhNDRiNWI5NWNlNyIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJlLWNvbW1lcmNlLWFwcCIsInNlc3Npb25fc3RhdGUiOiI0NjRkYzE5OC1hNDk1LTQ1NWYtOGE5Ni1iNzViMTJmNzEwMDAiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI0NjRkYzE5OC1hNDk1LTQ1NWYtOGE5Ni1iNzViMTJmNzEwMDAifQ.HSfJZ3Z5ftxO7jtg1Cbhs-u7gHzsI6E2g_I-aO4wDYk",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8082/realms/e-commerce/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"realms",
+						"e-commerce",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJuODU1ZEJLajBUX2o0QmsteFJJZk51SHBOOXZncWE3LTMzTWNVOGdZbDQwIn0.eyJleHAiOjE3MDE1NDA0NjIsImlhdCI6MTcwMTU0MDQ2MSwianRpIjoiNjVmYjkwZjQtNDBiNy00NDA0LWIyOWEtZWNhYjJkMzE4MDc1IiwiaXNzIjoiaHR0cDovL2tleWNsb2FrOjgwODIvcmVhbG1zL2UtY29tbWVyY2UiLCJzdWIiOiIwOTYyODg5Yy0zY2FmLTQ3N2ItODBhMC03YTQ0YjViOTVjZTciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJlLWNvbW1lcmNlLWFwcCIsInNlc3Npb25fc3RhdGUiOiI0Y2EwMThjZC04ZTViLTQ3YWUtOGIzZC05NTFmMTYxNzJhZjUiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI0Y2EwMThjZC04ZTViLTQ3YWUtOGIzZC05NTFmMTYxNzJhZjUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkZpcnN0IFVzZXIiLCJncm91cHMiOlsiVVNFUiJdLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ1c2VyMUBleGFtcGxlLmNvbSIsImdpdmVuX25hbWUiOiJGaXJzdCIsImZhbWlseV9uYW1lIjoiVXNlciIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20ifQ.r1f0bXb7peNjey4aEIUsYUv4rP0ts3cJizH5MAiY6TYuW4fEFJ5HJl7svBQN3t38AnjGdsaIiU-tqvPli-8921TKrI5tzc8wm4G0mmKun8YVaIoIt2Kl16Q8dCSzwQeQgG-1Z93a42tcQuohMP73l_hYkeWr8zsuDrGhyTePN9UXqoegJAWkrH6tBiSKPt3OTY2EEgGhC6cIE4OvYkIa74flekBnHPDostQsQrSc1jDVsxiEB0UY7th1y0v3XhUoYMSH-TGNv0d6HGLxTb8ns1cO9w7hUyi1JYv-pIbu0_Wq7VwGfZ5MDXgdzW6u9kEC_XMPEkB0jz2ZX252tVXZiA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api/v1",
+			"type": "string"
+		}
+	]
+}
